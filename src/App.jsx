@@ -1,31 +1,52 @@
-
 import { lazy, Suspense, useEffect, useState } from "react";
 import "./App.css";
 
 import Admin from "./Admin";
 import Shop from "./Shop";
+
 import bundlesImage from "./assets/bundles.jpg";
 import frontImage from "./assets/front.jpg";
 import fronterImage from "./assets/fronter.jpg";
 import nellyImage from "./assets/nelly.jpg";
 import wigImage from "./assets/wig.jpg";
+
 import initialProducts from "./products";
 
-const broadcastUrl = "https://chat.whatsapp.com/FCzlwt5iaf7CPoaJ2wGfYq?s=cl&p=i&mlu=4&ilr=4";
-const tiktokUrl = "https://www.tiktok.com/@nl_beauty_empire?_r=1&_t=ZS-9A0FG6TB1BW";
+/* =========================================
+   LINKS
+========================================= */
+
+const broadcastUrl =
+  "https://chat.whatsapp.com/FCzlwt5iaf7CPoaJ2wGfYq?s=cl&p=i&mlu=4&ilr=4";
+
+const tiktokUrl =
+  "https://www.tiktok.com/@nl_beauty_empire?_r=1&_t=ZS-9A0FG6TB1BW";
+
+/* =========================================
+   LAZY COMPONENTS
+========================================= */
 
 const Cart = lazy(() => import("./cart"));
 const Checkout = lazy(() => import("./Checkout"));
 const ProductDetails = lazy(() => import("./ProductDetails"));
 
+/* =========================================
+   READ CART FROM LOCAL STORAGE
+========================================= */
+
 const readStoredCart = () => {
   try {
     const storedCart = window.localStorage.getItem("nelly-cart");
+
     return storedCart ? JSON.parse(storedCart) : [];
   } catch {
     return [];
   }
 };
+
+/* =========================================
+   APP
+========================================= */
 
 function App() {
   const [cartItems, setCartItems] = useState(readStoredCart);
@@ -34,13 +55,20 @@ function App() {
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [products, setProducts] = useState(initialProducts);
 
+  /* =========================================
+     SAVE CART
+  ========================================= */
+
   useEffect(() => {
-    window.localStorage.setItem("nelly-cart", JSON.stringify(cartItems));
+    window.localStorage.setItem(
+      "nelly-cart",
+      JSON.stringify(cartItems)
+    );
   }, [cartItems]);
 
-  /* =========================
+  /* =========================================
      CART
-  ========================= */
+  ========================================= */
 
   const addProductToCart = (product) => {
     setCartItems((currentItems) => {
@@ -110,12 +138,14 @@ function App() {
     0
   );
 
-  /* =========================
+  /* =========================================
      CHECKOUT
-  ========================= */
+  ========================================= */
 
   const goToCheckout = () => {
-    if (cartItems.length === 0) return;
+    if (cartItems.length === 0) {
+      return;
+    }
 
     setCartOpen(false);
     setCheckoutOpen(true);
@@ -131,18 +161,25 @@ function App() {
     setCartOpen(true);
   };
 
-  /* =========================
+  /* =========================================
      CHECKOUT PAGE
-  ========================= */
+  ========================================= */
 
   if (checkoutOpen) {
     return (
-      <Suspense fallback={<div className="page-loading">Loading checkout...</div>}>
+      <Suspense
+        fallback={
+          <div className="page-loading">
+            Loading checkout...
+          </div>
+        }
+      >
         <Checkout
           cartItems={cartItems}
           onBackToCart={openCart}
           onOrderComplete={() => {
             setCartItems([]);
+            setCheckoutOpen(false);
           }}
         />
 
@@ -162,9 +199,9 @@ function App() {
   return (
     <div className="app">
 
-      {/* =========================
+      {/* =========================================
           ANNOUNCEMENT
-      ========================= */}
+      ========================================= */}
 
       <div className="announcement-bar">
         <span>
@@ -172,10 +209,9 @@ function App() {
         </span>
       </div>
 
-
-      {/* =========================
+      {/* =========================================
           HEADER
-      ========================= */}
+      ========================================= */}
 
       <header className="header">
         <div className="header-inner">
@@ -191,19 +227,40 @@ function App() {
           </a>
 
           <nav className="nav">
-            <a href="#home">HOME</a>
+
+            <a href="#home">
+              HOME
+            </a>
+
+            {/* SHOP GOES DIRECTLY TO WHATSAPP GROUP */}
             <a
               href={broadcastUrl}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               SHOP
             </a>
-            <a href="#admin">ADMIN</a>
-            <a href="#services">SERVICES</a>
-            <a href="#about">ABOUT</a>
-            <a href="#contact">CONTACT</a>
-            <a href="#faq">FAQ</a>
+
+            <a href="#admin">
+              ADMIN
+            </a>
+
+            <a href="#services">
+              SERVICES
+            </a>
+
+            <a href="#about">
+              ABOUT
+            </a>
+
+            <a href="#contact">
+              CONTACT
+            </a>
+
+            <a href="#faq">
+              FAQ
+            </a>
+
           </nav>
 
           <button
@@ -215,7 +272,9 @@ function App() {
               🛍
             </span>
 
-            <span>BAG</span>
+            <span>
+              BAG
+            </span>
 
             {cartCount > 0 && (
               <b className="cart-count">
@@ -227,18 +286,20 @@ function App() {
         </div>
       </header>
 
-
-      {/* =========================
+      {/* =========================================
           MAIN
-      ========================= */}
+      ========================================= */}
 
       <main>
 
-        {/* =========================
+        {/* =========================================
             HERO
-        ========================= */}
+        ========================================= */}
 
-        <section className="hero" id="home">
+        <section
+          className="hero"
+          id="home"
+        >
 
           <div className="hero-image">
             <img
@@ -261,7 +322,9 @@ function App() {
             <h1>
               Hair That Makes
               <br />
-              <em>You Feel Beautiful.</em>
+              <em>
+                You Feel Beautiful.
+              </em>
             </h1>
 
             <p className="hero-description">
@@ -272,10 +335,11 @@ function App() {
 
             <div className="hero-buttons">
 
+              {/* SHOP COLLECTION GOES TO WHATSAPP */}
               <a
                 href={broadcastUrl}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="hero-primary"
               >
                 SHOP COLLECTION
@@ -293,16 +357,18 @@ function App() {
           </div>
 
           <div className="hero-scroll">
-            <span>SCROLL TO EXPLORE</span>
+            <span>
+              SCROLL TO EXPLORE
+            </span>
+
             <i />
           </div>
 
         </section>
 
-
-        {/* =========================
+        {/* =========================================
             INTRO
-        ========================= */}
+        ========================================= */}
 
         <section className="intro-section">
 
@@ -317,7 +383,9 @@ function App() {
               <br />
               Your Confidence.
               <br />
-              <em>Your Hair.</em>
+              <em>
+                Your Hair.
+              </em>
             </h2>
 
           </div>
@@ -348,10 +416,9 @@ function App() {
 
         </section>
 
-
-        {/* =========================
+        {/* =========================================
             FEATURED COLLECTIONS
-        ========================= */}
+        ========================================= */}
 
         <section className="collections-section">
 
@@ -370,7 +437,9 @@ function App() {
           <div className="collections-grid">
 
             <a
-              href="#shop"
+              href={broadcastUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="collection-card collection-large"
             >
               <img
@@ -384,15 +453,24 @@ function App() {
               <div className="collection-overlay" />
 
               <div className="collection-content">
-                <span>01</span>
-                <h3>Luxury Wigs</h3>
-                <p>SHOP NOW →</p>
+                <span>
+                  01
+                </span>
+
+                <h3>
+                  Luxury Wigs
+                </h3>
+
+                <p>
+                  SHOP NOW →
+                </p>
               </div>
             </a>
 
-
             <a
-              href="#shop"
+              href={broadcastUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="collection-card"
             >
               <img
@@ -406,15 +484,24 @@ function App() {
               <div className="collection-overlay" />
 
               <div className="collection-content">
-                <span>02</span>
-                <h3>Hair Bundles</h3>
-                <p>SHOP NOW →</p>
+                <span>
+                  02
+                </span>
+
+                <h3>
+                  Hair Bundles
+                </h3>
+
+                <p>
+                  SHOP NOW →
+                </p>
               </div>
             </a>
 
-
             <a
-              href="#shop"
+              href={broadcastUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="collection-card"
             >
               <img
@@ -428,9 +515,17 @@ function App() {
               <div className="collection-overlay" />
 
               <div className="collection-content">
-                <span>03</span>
-                <h3>HD Lace</h3>
-                <p>SHOP NOW →</p>
+                <span>
+                  03
+                </span>
+
+                <h3>
+                  HD Lace
+                </h3>
+
+                <p>
+                  SHOP NOW →
+                </p>
               </div>
             </a>
 
@@ -438,10 +533,9 @@ function App() {
 
         </section>
 
-
-        {/* =========================
+        {/* =========================================
             SERVICES
-        ========================= */}
+        ========================================= */}
 
         <section
           className="services-section"
@@ -450,7 +544,9 @@ function App() {
 
           <div className="services-heading">
 
-            <p>HAIR BY NELLY</p>
+            <p>
+              HAIR BY NELLY
+            </p>
 
             <h2>
               Services & Collections
@@ -464,206 +560,358 @@ function App() {
 
           </div>
 
-
           {/* PROFESSIONAL SERVICES */}
 
           <div className="services-subheading">
 
-            <span>01</span>
+            <span>
+              01
+            </span>
 
             <div>
-              <p>PROFESSIONAL SERVICES</p>
+
+              <p>
+                PROFESSIONAL SERVICES
+              </p>
 
               <h3>
                 Beauty & Hair Services
               </h3>
+
             </div>
 
           </div>
 
-
           <div className="services-grid">
 
             <div className="service-card">
-              <span className="service-number">01</span>
-              <div className="service-icon">✦</div>
 
-              <h3>Frontal Install</h3>
+              <span className="service-number">
+                01
+              </span>
+
+              <div className="service-icon">
+                ✦
+              </div>
+
+              <h3>
+                Frontal Install
+              </h3>
 
               <p>
                 Professional frontal installation
                 for a seamless and natural-looking
                 finish.
               </p>
+
             </div>
 
-
             <div className="service-card">
-              <span className="service-number">02</span>
-              <div className="service-icon">✦</div>
 
-              <h3>Closure Install</h3>
+              <span className="service-number">
+                02
+              </span>
+
+              <div className="service-icon">
+                ✦
+              </div>
+
+              <h3>
+                Closure Install
+              </h3>
 
               <p>
                 Neat and secure closure installation
                 designed for a beautiful natural finish.
               </p>
+
             </div>
 
-
             <div className="service-card">
-              <span className="service-number">03</span>
-              <div className="service-icon">✦</div>
 
-              <h3>Wig Making</h3>
+              <span className="service-number">
+                03
+              </span>
+
+              <div className="service-icon">
+                ✦
+              </div>
+
+              <h3>
+                Wig Making
+              </h3>
 
               <p>
                 Custom-made wigs created to complement
                 your style, personality and preference.
               </p>
+
             </div>
 
-
             <div className="service-card">
-              <span className="service-number">04</span>
-              <div className="service-icon">✦</div>
 
-              <h3>Bone Straight</h3>
+              <span className="service-number">
+                04
+              </span>
+
+              <div className="service-icon">
+                ✦
+              </div>
+
+              <h3>
+                Bone Straight
+              </h3>
 
               <p>
                 Sleek, silky and polished styling for
                 an effortlessly luxurious appearance.
               </p>
+
             </div>
 
-
             <div className="service-card">
-              <span className="service-number">05</span>
-              <div className="service-icon">✦</div>
 
-              <h3>Curls & Waves</h3>
+              <span className="service-number">
+                05
+              </span>
+
+              <div className="service-icon">
+                ✦
+              </div>
+
+              <h3>
+                Curls & Waves
+              </h3>
 
               <p>
                 Beautiful curls and waves designed
                 to add volume, movement and glamour.
               </p>
+
             </div>
 
-
             <div className="service-card">
-              <span className="service-number">06</span>
-              <div className="service-icon">✦</div>
 
-              <h3>Hair Coloring</h3>
+              <span className="service-number">
+                06
+              </span>
+
+              <div className="service-icon">
+                ✦
+              </div>
+
+              <h3>
+                Hair Coloring
+              </h3>
 
               <p>
                 Professional hair coloring tailored
                 to achieve your desired shade and style.
               </p>
+
             </div>
 
-
             <div className="service-card">
-              <span className="service-number">07</span>
-              <div className="service-icon">✦</div>
 
-              <h3>Lace Customization</h3>
+              <span className="service-number">
+                07
+              </span>
+
+              <div className="service-icon">
+                ✦
+              </div>
+
+              <h3>
+                Lace Customization
+              </h3>
 
               <p>
                 Detailed lace customization for a more
                 natural and undetectable appearance.
               </p>
+
             </div>
 
-
             <div className="service-card">
-              <span className="service-number">08</span>
-              <div className="service-icon">✦</div>
 
-              <h3>Hair Revamp</h3>
+              <span className="service-number">
+                08
+              </span>
+
+              <div className="service-icon">
+                ✦
+              </div>
+
+              <h3>
+                Hair Revamp
+              </h3>
 
               <p>
                 Restore and transform your favourite
                 hair pieces with professional care.
               </p>
+
             </div>
 
           </div>
-
 
           {/* COLLECTIONS */}
 
           <div className="services-subheading collections-subheading">
 
-            <span>02</span>
+            <span>
+              02
+            </span>
 
             <div>
-              <p>HAIR COLLECTION</p>
+
+              <p>
+                HAIR COLLECTION
+              </p>
 
               <h3>
                 Shop Our Collections
               </h3>
+
             </div>
 
           </div>
-
 
           <div className="hair-collection-banner">
 
             <div className="collection-track">
 
-              <span>Wigs</span>
-              <i>✦</i>
+              <span>
+                Wigs
+              </span>
 
-              <span>Frontal Units</span>
-              <i>✦</i>
+              <i>
+                ✦
+              </i>
 
-              <span>Closures</span>
-              <i>✦</i>
+              <span>
+                Frontal Units
+              </span>
 
-              <span>Bundles</span>
-              <i>✦</i>
+              <i>
+                ✦
+              </i>
 
-              <span>Ponytails</span>
-              <i>✦</i>
+              <span>
+                Closures
+              </span>
 
-              <span>Custom Wigs</span>
-              <i>✦</i>
+              <i>
+                ✦
+              </i>
 
-              <span>HD Lace</span>
-              <i>✦</i>
+              <span>
+                Bundles
+              </span>
 
-              <span>Hair Maintenance</span>
-              <i>✦</i>
+              <i>
+                ✦
+              </i>
 
-              <span>Wigs</span>
-              <i>✦</i>
+              <span>
+                Ponytails
+              </span>
 
-              <span>Frontal Units</span>
-              <i>✦</i>
+              <i>
+                ✦
+              </i>
 
-              <span>Closures</span>
-              <i>✦</i>
+              <span>
+                Custom Wigs
+              </span>
 
-              <span>Bundles</span>
-              <i>✦</i>
+              <i>
+                ✦
+              </i>
 
-              <span>Ponytails</span>
-              <i>✦</i>
+              <span>
+                HD Lace
+              </span>
 
-              <span>Custom Wigs</span>
-              <i>✦</i>
+              <i>
+                ✦
+              </i>
 
-              <span>HD Lace</span>
-              <i>✦</i>
+              <span>
+                Hair Maintenance
+              </span>
 
-              <span>Hair Maintenance</span>
-              <i>✦</i>
+              <i>
+                ✦
+              </i>
+
+              <span>
+                Wigs
+              </span>
+
+              <i>
+                ✦
+              </i>
+
+              <span>
+                Frontal Units
+              </span>
+
+              <i>
+                ✦
+              </i>
+
+              <span>
+                Closures
+              </span>
+
+              <i>
+                ✦
+              </i>
+
+              <span>
+                Bundles
+              </span>
+
+              <i>
+                ✦
+              </i>
+
+              <span>
+                Ponytails
+              </span>
+
+              <i>
+                ✦
+              </i>
+
+              <span>
+                Custom Wigs
+              </span>
+
+              <i>
+                ✦
+              </i>
+
+              <span>
+                HD Lace
+              </span>
+
+              <i>
+                ✦
+              </i>
+
+              <span>
+                Hair Maintenance
+              </span>
+
+              <i>
+                ✦
+              </i>
 
             </div>
 
           </div>
-
 
           {/* BOOKING CTA */}
 
@@ -684,7 +932,7 @@ function App() {
             <a
               href="https://wa.me/2347014580884"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               BOOK A SERVICE →
             </a>
@@ -693,10 +941,9 @@ function App() {
 
         </section>
 
-
-        {/* =========================
-            SHOP
-        ========================= */}
+        {/* =========================================
+            SHOP COMPONENT
+        ========================================= */}
 
         <Shop
           products={products}
@@ -704,20 +951,27 @@ function App() {
           onViewProduct={setSelectedProduct}
         />
 
-        <Admin
-          products={products}
-          onAddProduct={(product) => {
-            setProducts((currentProducts) => [
-              ...currentProducts,
-              product,
-            ]);
-          }}
-        />
+        {/* =========================================
+            ADMIN
+        ========================================= */}
 
+        <section id="admin">
 
-        {/* =========================
+          <Admin
+            products={products}
+            onAddProduct={(product) => {
+              setProducts((currentProducts) => [
+                ...currentProducts,
+                product,
+              ]);
+            }}
+          />
+
+        </section>
+
+        {/* =========================================
             ABOUT
-        ========================= */}
+        ========================================= */}
 
         <section
           className="about-section"
@@ -736,7 +990,6 @@ function App() {
 
           </div>
 
-
           <div className="about-content">
 
             <p className="section-label">
@@ -746,7 +999,9 @@ function App() {
             <h2>
               More Than Hair.
               <br />
-              <em>It's Confidence.</em>
+              <em>
+                It's Confidence.
+              </em>
             </h2>
 
             <p>
@@ -770,10 +1025,9 @@ function App() {
 
         </section>
 
-
-        {/* =========================
+        {/* =========================================
             WHY CHOOSE US
-        ========================= */}
+        ========================================= */}
 
         <section className="why-section">
 
@@ -789,11 +1043,13 @@ function App() {
 
           </div>
 
-
           <div className="why-grid">
 
             <div className="why-card">
-              <span>01</span>
+
+              <span>
+                01
+              </span>
 
               <h3>
                 Premium Quality
@@ -803,11 +1059,14 @@ function App() {
                 Carefully selected hair and materials
                 chosen for quality and longevity.
               </p>
+
             </div>
 
-
             <div className="why-card">
-              <span>02</span>
+
+              <span>
+                02
+              </span>
 
               <h3>
                 Custom Beauty
@@ -817,11 +1076,14 @@ function App() {
                 Every look can be customized to
                 match your personal style.
               </p>
+
             </div>
 
-
             <div className="why-card">
-              <span>03</span>
+
+              <span>
+                03
+              </span>
 
               <h3>
                 Professional Service
@@ -831,11 +1093,14 @@ function App() {
                 Attention to detail from consultation
                 through installation and maintenance.
               </p>
+
             </div>
 
-
             <div className="why-card">
-              <span>04</span>
+
+              <span>
+                04
+              </span>
 
               <h3>
                 Nationwide Delivery
@@ -845,16 +1110,16 @@ function App() {
                 Get your favourite Hair by Nelly
                 pieces delivered across Nigeria.
               </p>
+
             </div>
 
           </div>
 
         </section>
 
-
-        {/* =========================
+        {/* =========================================
             PROMO
-        ========================= */}
+        ========================================= */}
 
         <section className="promo-section">
 
@@ -871,7 +1136,9 @@ function App() {
             </h2>
 
             <a
-              href="#shop"
+              href={broadcastUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="promo-button"
             >
               SHOP NOW →
@@ -881,10 +1148,9 @@ function App() {
 
         </section>
 
-
-        {/* =========================
+        {/* =========================================
             REVIEWS
-        ========================= */}
+        ========================================= */}
 
         <section className="reviews-section">
 
@@ -899,7 +1165,6 @@ function App() {
             </h2>
 
           </div>
-
 
           <div className="reviews-grid">
 
@@ -921,7 +1186,6 @@ function App() {
 
             </article>
 
-
             <article className="review-card">
 
               <div className="stars">
@@ -939,7 +1203,6 @@ function App() {
               </strong>
 
             </article>
-
 
             <article className="review-card">
 
@@ -963,10 +1226,9 @@ function App() {
 
         </section>
 
-
-        {/* =========================
+        {/* =========================================
             FAQ
-        ========================= */}
+        ========================================= */}
 
         <section
           className="faq-section"
@@ -982,11 +1244,12 @@ function App() {
             <h2>
               Frequently Asked
               <br />
-              <em>Questions.</em>
+              <em>
+                Questions.
+              </em>
             </h2>
 
           </div>
-
 
           <div className="faq-list">
 
@@ -994,7 +1257,10 @@ function App() {
 
               <summary>
                 Do you deliver nationwide?
-                <span>+</span>
+
+                <span>
+                  +
+                </span>
               </summary>
 
               <p>
@@ -1004,12 +1270,14 @@ function App() {
 
             </details>
 
-
             <details>
 
               <summary>
                 Can I request a custom wig?
-                <span>+</span>
+
+                <span>
+                  +
+                </span>
               </summary>
 
               <p>
@@ -1019,12 +1287,14 @@ function App() {
 
             </details>
 
-
             <details>
 
               <summary>
                 How can I book a service?
-                <span>+</span>
+
+                <span>
+                  +
+                </span>
               </summary>
 
               <p>
@@ -1035,12 +1305,14 @@ function App() {
 
             </details>
 
-
             <details>
 
               <summary>
                 Do you offer hair revamp?
-                <span>+</span>
+
+                <span>
+                  +
+                </span>
               </summary>
 
               <p>
@@ -1054,10 +1326,9 @@ function App() {
 
         </section>
 
-
-        {/* =========================
-            NEWSLETTER
-        ========================= */}
+        {/* =========================================
+            NELLY HAIR LIST
+        ========================================= */}
 
         <section className="newsletter-section">
 
@@ -1078,23 +1349,30 @@ function App() {
 
           </div>
 
+          {/* EXACT WHATSAPP GROUP LINK */}
 
           <a
             className="newsletter-form"
             href={broadcastUrl}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
-            <span>FOLLOW US ON TIKTOK</span>
-            <strong>JOIN →</strong>
+
+            <span>
+              JOIN THE NELLY HAIR LIST
+            </span>
+
+            <strong>
+              JOIN →
+            </strong>
+
           </a>
 
         </section>
 
-
-        {/* =========================
+        {/* =========================================
             CONTACT
-        ========================= */}
+        ========================================= */}
 
         <section
           className="contact-section"
@@ -1118,13 +1396,12 @@ function App() {
 
           </div>
 
-
           <div className="contact-grid">
 
             <a
               href="https://wa.me/2347014580884"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="contact-card"
             >
 
@@ -1141,7 +1418,6 @@ function App() {
               </small>
 
             </a>
-
 
             <a
               href="tel:+2348166012497"
@@ -1161,7 +1437,6 @@ function App() {
               </small>
 
             </a>
-
 
             <div className="contact-card">
 
@@ -1187,10 +1462,9 @@ function App() {
 
       </main>
 
-
-      {/* =========================
+      {/* =========================================
           FOOTER
-      ========================= */}
+      ========================================= */}
 
       <footer className="footer">
 
@@ -1209,31 +1483,45 @@ function App() {
 
           </div>
 
-
           <div className="footer-column">
 
             <h4>
               SHOP
             </h4>
 
-            <a href="#shop">
+            <a
+              href={broadcastUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Wigs
             </a>
 
-            <a href="#shop">
+            <a
+              href={broadcastUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Bundles
             </a>
 
-            <a href="#shop">
+            <a
+              href={broadcastUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Frontals
             </a>
 
-            <a href="#shop">
+            <a
+              href={broadcastUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               HD Lace
             </a>
 
           </div>
-
 
           <div className="footer-column">
 
@@ -1259,7 +1547,6 @@ function App() {
 
           </div>
 
-
           <div className="footer-column">
 
             <h4>
@@ -1277,7 +1564,7 @@ function App() {
             <a
               href="https://wa.me/2347014580884"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               WhatsApp
             </a>
@@ -1285,7 +1572,7 @@ function App() {
             <a
               href={tiktokUrl}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               TikTok
             </a>
@@ -1294,28 +1581,37 @@ function App() {
 
         </div>
 
-
         <div className="footer-bottom">
 
           <span>
             © 2026 Hair by Nelly - Lagos, Nigeria
           </span>
 
-          <div className="payment-methods" aria-label="Payment methods">
-            <span>▣ Bank Transfer</span>
-            <span>▣ Pay on Delivery</span>
+          <div
+            className="payment-methods"
+            aria-label="Payment methods"
+          >
+
+            <span>
+              ▣ Bank Transfer
+            </span>
+
+            <span>
+              ▣ Pay on Delivery
+            </span>
+
           </div>
 
         </div>
 
       </footer>
 
-
-      {/* =========================
+      {/* =========================================
           PRODUCT DETAILS
-      ========================= */}
+      ========================================= */}
 
       <Suspense fallback={null}>
+
         {selectedProduct && (
           <ProductDetails
             product={selectedProduct}
@@ -1323,14 +1619,15 @@ function App() {
             onAddToCart={addProductToCart}
           />
         )}
+
       </Suspense>
 
-
-      {/* =========================
+      {/* =========================================
           CART
-      ========================= */}
+      ========================================= */}
 
       <Suspense fallback={null}>
+
         <Cart
           isOpen={cartOpen}
           onClose={() => setCartOpen(false)}
@@ -1340,6 +1637,7 @@ function App() {
           onRemove={removeFromCart}
           onCheckout={goToCheckout}
         />
+
       </Suspense>
 
     </div>
@@ -1347,4 +1645,3 @@ function App() {
 }
 
 export default App;
-
