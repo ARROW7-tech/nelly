@@ -671,7 +671,7 @@ function App() {
             </div>
 
             <a
-              href="https://wa.me/2348166012497"
+              href="https://wa.me/2347014580884"
               target="_blank"
               rel="noreferrer"
             >
@@ -1124,7 +1124,7 @@ function App() {
           <div className="contact-grid">
 
             <a
-              href="https://wa.me/2348166012497"
+              href="https://wa.me/2347014580884"
               target="_blank"
               rel="noreferrer"
               className="contact-card"
@@ -1135,7 +1135,7 @@ function App() {
               </span>
 
               <strong>
-                +234 816 601 2497
+                +234 701 458 0884
               </strong>
 
               <small>
@@ -1275,7 +1275,7 @@ function App() {
             </a>
 
             <a
-              href="https://wa.me/2348166012497"
+              href="https://wa.me/2347014580884"
               target="_blank"
               rel="noreferrer"
             >

@@ -69,7 +69,7 @@ function Checkout({ cartItems, onBackToCart, onOrderComplete }) {
     setSubmitted(true);
 
     window.open(
-      `https://wa.me/2348166012497?text=${encodeURIComponent(message)}`,
+      `https://wa.me/2347014580884?text=${encodeURIComponent(message)}`,
       "_blank"
     );
 
