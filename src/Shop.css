@@ -114,18 +114,25 @@
   transition: 0.5s;
 }
 
+.shop-product-actions {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 8px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
 .shop-product:hover img {
   transform: scale(1.04);
 }
 
 .shop-add {
-  position: absolute;
-
-  left: 15px;
-  right: 15px;
-  bottom: 15px;
-
-  height: 50px;
+  position: static;
+  width: 100%;
+  height: 38px;
 
   border: none;
 
@@ -142,6 +149,23 @@
   transform: translateY(80px);
 
   transition: 0.3s;
+}
+
+.shop-product-actions .shop-view {
+  min-height: 30px;
+  padding: 0 10px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: rgba(36, 26, 23, 0.72);
+  color: var(--white);
+  cursor: pointer;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.shop-product-actions .shop-view:hover {
+  background: var(--white);
+  color: var(--black);
 }
 
 .shop-add:hover {
@@ -222,7 +246,14 @@
     font-size: 16px;
   }
 
-  .shop-add {
+  .shop-product-actions {
+    left: 8px;
+    right: 8px;
+    bottom: 6px;
+  }
+
+  .shop-product-actions .shop-add,
+  .shop-product-actions .shop-view {
     transform: translateY(0);
   }
 }
