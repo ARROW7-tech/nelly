@@ -1290,13 +1290,13 @@ function App() {
         <div className="footer-bottom">
 
           <span>
-            © {new Date().getFullYear()} Hair by Nelly.
-            All rights reserved.
+            © 2026 Hair by Nelly - Lagos, Nigeria
           </span>
 
-          <span>
-            LUXURY HAIR COLLECTION
-          </span>
+          <div className="payment-methods" aria-label="Payment methods">
+            <span>▣ Bank Transfer</span>
+            <span>▣ Pay on Delivery</span>
+          </div>
 
         </div>
 

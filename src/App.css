@@ -1278,6 +1278,28 @@ img {
   letter-spacing: 1px;
 }
 
+.payment-methods {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.payment-methods span {
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .footer-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .payment-methods {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
 
 /* =========================================
    TABLET
