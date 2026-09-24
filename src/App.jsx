@@ -375,7 +375,7 @@ function App() {
           <div className="intro-left">
 
             <p className="section-label">
-              WELCOME TO HAIR BY NELLY
+              WELCOME to Nelly Beauty Empire
             </p>
 
             <h2>
@@ -393,7 +393,7 @@ function App() {
           <div className="intro-right">
 
             <p>
-              Hair by Nelly is a premium hair brand
+              Nelly Beauty Empire is a premium hair brand
               dedicated to helping women discover
               beautiful, confident and effortless looks.
             </p>
@@ -545,7 +545,7 @@ function App() {
           <div className="services-heading">
 
             <p>
-              HAIR BY NELLY
+            Nelly Beauty Empire offers a range of professional hair services and premium hair collections to help you achieve your perfect look.
             </p>
 
             <h2>
@@ -982,7 +982,7 @@ function App() {
 
             <img
               src={nellyImage}
-              alt="Nelly, founder of Hair by Nelly"
+              alt="Nelly, founder of Nelly Beauty Empire"
               width="1000"
               height="1000"
               loading="lazy"
@@ -1018,7 +1018,7 @@ function App() {
             </p>
 
             <div className="about-signature">
-              HAIR BY NELLY
+              Nelly Beauty Empire
             </div>
 
           </div>
@@ -1107,7 +1107,7 @@ function App() {
               </h3>
 
               <p>
-                Get your favourite Hair by Nelly
+                Get your favourite HAIR BY NELLY
                 pieces delivered across Nigeria.
               </p>
 
