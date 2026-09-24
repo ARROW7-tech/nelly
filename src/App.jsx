@@ -80,9 +80,9 @@ function App() {
         return currentItems.map((item) =>
           item.id === product.id
             ? {
-                ...item,
-                quantity: item.quantity + 1,
-              }
+              ...item,
+              quantity: item.quantity + 1,
+            }
             : item
         );
       }
@@ -104,9 +104,9 @@ function App() {
       currentItems.map((item) =>
         item.id === id
           ? {
-              ...item,
-              quantity: item.quantity + 1,
-            }
+            ...item,
+            quantity: item.quantity + 1,
+          }
           : item
       )
     );
@@ -118,9 +118,9 @@ function App() {
         .map((item) =>
           item.id === id
             ? {
-                ...item,
-                quantity: item.quantity - 1,
-              }
+              ...item,
+              quantity: item.quantity - 1,
+            }
             : item
         )
         .filter((item) => item.quantity > 0)
@@ -218,7 +218,7 @@ function App() {
 
           <a href="#home" className="logo">
             <span className="logo-main">
-              NELLY Beauty Empire
+              NL Beauty Empire
             </span>
 
             <span className="logo-sub">
@@ -375,7 +375,7 @@ function App() {
           <div className="intro-left">
 
             <p className="section-label">
-              WELCOME to Nelly Beauty Empire
+              WELCOME to NL Beauty Empire
             </p>
 
             <h2>
@@ -393,7 +393,7 @@ function App() {
           <div className="intro-right">
 
             <p>
-              Nelly Beauty Empire is a premium hair brand
+              NL Beauty Empire is a premium hair brand
               dedicated to helping women discover
               beautiful, confident and effortless looks.
             </p>
@@ -506,7 +506,7 @@ function App() {
             >
               <img
                 src={fronterImage}
-                alt="HD Lace"
+                alt="Premuim"
                 width="900"
                 height="800"
                 loading="lazy"
@@ -520,7 +520,7 @@ function App() {
                 </span>
 
                 <h3>
-                  HD Lace
+                  PREMUIM
                 </h3>
 
                 <p>
@@ -545,7 +545,7 @@ function App() {
           <div className="services-heading">
 
             <p>
-            Nelly Beauty Empire offers a range of professional hair services and premium hair collections to help you achieve your perfect look.
+              NL Beauty Empire offers a range of professional hair services and premium hair collections to help you achieve your perfect look.
             </p>
 
             <h2>
@@ -830,7 +830,7 @@ function App() {
               </i>
 
               <span>
-                HD Lace
+                premium Hair
               </span>
 
               <i>
@@ -1005,7 +1005,7 @@ function App() {
             </h2>
 
             <p>
-              At Hair by Nelly, we believe that the
+              At NL Beauty Empire, we believe that the
               right hair can completely transform
               how you feel about yourself.
             </p>
@@ -1034,7 +1034,7 @@ function App() {
           <div className="section-heading">
 
             <p>
-              THE NELLY EXPERIENCE
+              THE NL Beauty Empire EXPERIENCE
             </p>
 
             <h2>
@@ -1193,13 +1193,12 @@ function App() {
               </div>
 
               <p>
-                "Nelly did an incredible job with my
-                installation. Everything was neat and
-                exactly how I wanted it."
+                All thanks to NL Beauty Empire for the amazing hair and service.
+                
               </p>
 
               <strong>
-                — MERCY
+                — Oriyomi
               </strong>
 
             </article>
@@ -1217,7 +1216,7 @@ function App() {
               </p>
 
               <strong>
-                — CHIAMAKA
+                — Everything Vivan 
               </strong>
 
             </article>
@@ -1256,7 +1255,7 @@ function App() {
             <details>
 
               <summary>
-                Do you deliver nationwide?
+                How long does delivery take?
 
                 <span>
                   +
@@ -1264,8 +1263,10 @@ function App() {
               </summary>
 
               <p>
-                Yes. Hair by Nelly offers delivery
-                across Nigeria.
+                Lagos: 24-48hrs,outside lagos 2-4 working days
+                once you order,we confirmand ship same day,you 
+                will have a tracking update on whatsapp
+
               </p>
 
             </details>
@@ -1273,7 +1274,7 @@ function App() {
             <details>
 
               <summary>
-                Can I request a custom wig?
+                Can I pay on delivery?
 
                 <span>
                   +
@@ -1281,8 +1282,9 @@ function App() {
               </summary>
 
               <p>
-                Yes. We offer custom wig making and
-                lace customization services.
+                Yes.pay on delivery avaliable
+                in lagos only,outside payment before delivery is required.
+                
               </p>
 
             </details>
@@ -1290,7 +1292,7 @@ function App() {
             <details>
 
               <summary>
-                How can I book a service?
+                what if the hair doesn't fit or i dont like it?
 
                 <span>
                   +
@@ -1298,9 +1300,10 @@ function App() {
               </summary>
 
               <p>
-                You can contact Hair by Nelly directly
-                through WhatsApp to discuss your desired
-                service and appointment.
+                You can return it after todays pending that you have never 
+                tempered with the hair and it is in its original condition,please contact us on whatsapp for return instructions
+                
+                .
               </p>
 
             </details>
@@ -1339,7 +1342,7 @@ function App() {
             </p>
 
             <h2>
-              Join the Hair by Nelly List
+              Join the Nelly Beauty Empire  List
             </h2>
 
             <span>
@@ -1429,7 +1432,7 @@ function App() {
               </span>
 
               <strong>
-                +234 816 601 2497
+                0 816 601 2497
               </strong>
 
               <small>
