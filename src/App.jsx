@@ -1,12 +1,9 @@
 
-import { useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import "./App.css";
 
 import Admin from "./Admin";
 import Shop from "./Shop";
-import Cart from "./cart";
-import ProductDetails from "./ProductDetails";
-import Checkout from "./Checkout";
 import bundlesImage from "./assets/bundles.jpg";
 import frontImage from "./assets/front.jpg";
 import fronterImage from "./assets/fronter.jpg";
@@ -14,12 +11,29 @@ import nellyImage from "./assets/nelly.jpg";
 import wigImage from "./assets/wig.jpg";
 import initialProducts from "./products";
 
+const Cart = lazy(() => import("./cart"));
+const Checkout = lazy(() => import("./Checkout"));
+const ProductDetails = lazy(() => import("./ProductDetails"));
+
+const readStoredCart = () => {
+  try {
+    const storedCart = window.localStorage.getItem("nelly-cart");
+    return storedCart ? JSON.parse(storedCart) : [];
+  } catch {
+    return [];
+  }
+};
+
 function App() {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(readStoredCart);
   const [cartOpen, setCartOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [products, setProducts] = useState(initialProducts);
+
+  useEffect(() => {
+    window.localStorage.setItem("nelly-cart", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   /* =========================
      CART
@@ -120,7 +134,7 @@ function App() {
 
   if (checkoutOpen) {
     return (
-      <>
+      <Suspense fallback={<div className="page-loading">Loading checkout...</div>}>
         <Checkout
           cartItems={cartItems}
           onBackToCart={openCart}
@@ -138,7 +152,7 @@ function App() {
           onRemove={removeFromCart}
           onCheckout={goToCheckout}
         />
-      </>
+      </Suspense>
     );
   }
 
@@ -221,6 +235,9 @@ function App() {
             <img
               src={frontImage}
               alt="Hair by Nelly frontal collection"
+              width="1200"
+              height="800"
+              fetchPriority="high"
             />
           </div>
 
@@ -348,6 +365,9 @@ function App() {
               <img
                 src={wigImage}
                 alt="Luxury Wigs"
+                width="1000"
+                height="800"
+                loading="lazy"
               />
 
               <div className="collection-overlay" />
@@ -367,6 +387,9 @@ function App() {
               <img
                 src={bundlesImage}
                 alt="Hair Bundles"
+                width="900"
+                height="800"
+                loading="lazy"
               />
 
               <div className="collection-overlay" />
@@ -386,6 +409,9 @@ function App() {
               <img
                 src={fronterImage}
                 alt="HD Lace"
+                width="900"
+                height="800"
+                loading="lazy"
               />
 
               <div className="collection-overlay" />
@@ -692,6 +718,9 @@ function App() {
             <img
               src={nellyImage}
               alt="Nelly, founder of Hair by Nelly"
+              width="1000"
+              height="1000"
+              loading="lazy"
             />
 
           </div>
@@ -1278,28 +1307,32 @@ function App() {
           PRODUCT DETAILS
       ========================= */}
 
-      {selectedProduct && (
-        <ProductDetails
-          product={selectedProduct}
-          onClose={() => setSelectedProduct(null)}
-          onAddToCart={addProductToCart}
-        />
-      )}
+      <Suspense fallback={null}>
+        {selectedProduct && (
+          <ProductDetails
+            product={selectedProduct}
+            onClose={() => setSelectedProduct(null)}
+            onAddToCart={addProductToCart}
+          />
+        )}
+      </Suspense>
 
 
       {/* =========================
           CART
       ========================= */}
 
-      <Cart
-        isOpen={cartOpen}
-        onClose={() => setCartOpen(false)}
-        cartItems={cartItems}
-        onIncrease={increaseQuantity}
-        onDecrease={decreaseQuantity}
-        onRemove={removeFromCart}
-        onCheckout={goToCheckout}
-      />
+      <Suspense fallback={null}>
+        <Cart
+          isOpen={cartOpen}
+          onClose={() => setCartOpen(false)}
+          cartItems={cartItems}
+          onIncrease={increaseQuantity}
+          onDecrease={decreaseQuantity}
+          onRemove={removeFromCart}
+          onCheckout={goToCheckout}
+        />
+      </Suspense>
 
     </div>
   );

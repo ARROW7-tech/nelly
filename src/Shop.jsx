@@ -70,6 +70,9 @@ function Shop({ products: catalog, onAddToCart, onViewProduct }) {
                 <img
                   src={product.image}
                   alt={product.name}
+                  width="900"
+                  height="1100"
+                  loading="lazy"
                 />
 
                 <div className="shop-product-actions">

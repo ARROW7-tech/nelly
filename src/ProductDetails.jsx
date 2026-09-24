@@ -75,6 +75,8 @@ Please provide more information about availability and delivery.
           <img
             src={product.image}
             alt={product.name}
+            width="900"
+            height="1100"
           />
 
           <span className="product-badge">

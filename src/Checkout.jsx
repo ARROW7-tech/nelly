@@ -69,7 +69,7 @@ function Checkout({ cartItems, onBackToCart, onOrderComplete }) {
     setSubmitted(true);
 
     window.open(
-      `https://wa.me/2347014580884?text=${message}`,
+      `https://wa.me/2347014580884?text=${encodeURIComponent(message)}`,
       "_blank"
     );
 
@@ -553,6 +553,9 @@ function Checkout({ cartItems, onBackToCart, onOrderComplete }) {
                     <img
                       src={item.image}
                       alt={item.name}
+                      width="120"
+                      height="150"
+                      loading="lazy"
                     />
 
                     <span>
