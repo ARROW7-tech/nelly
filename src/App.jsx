@@ -191,7 +191,13 @@ function App() {
 
           <nav className="nav">
             <a href="#home">HOME</a>
-            <a href="#shop">SHOP</a>
+            <a
+              href={broadcastUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              SHOP
+            </a>
             <a href="#admin">ADMIN</a>
             <a href="#services">SERVICES</a>
             <a href="#about">ABOUT</a>
