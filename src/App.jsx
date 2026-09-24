@@ -218,7 +218,7 @@ function App() {
 
           <a href="#home" className="logo">
             <span className="logo-main">
-              HAIR BY NELLY
+              NELLY Beauty Empire
             </span>
 
             <span className="logo-sub">
