@@ -1166,15 +1166,17 @@ function App() {
             <div className="contact-card">
 
               <span>
-                SERVICE
+                NATIONAL DELIVERY
               </span>
 
               <strong>
-                Hair & Beauty
+                Fast & Reliable
               </strong>
 
               <small>
-                NATIONWIDE DELIVERY
+                Lagos: 24-48hrs
+                <br />
+                Outside Lagos: 2-4 days
               </small>
 
             </div>
