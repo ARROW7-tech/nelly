@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Checkout.css";
+import "./checkout.css";
 
 function Checkout({ cartItems, onBackToCart, onOrderComplete }) {
   const [form, setForm] = useState({
