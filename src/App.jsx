@@ -11,7 +11,7 @@ import nellyImage from "./assets/nelly.jpg";
 import wigImage from "./assets/wig.jpg";
 import initialProducts from "./products";
 
-const tiktokUrl = "https://www.tiktok.com/@nl_beauty_empire?_r=1&_t=ZS-9A0FG6TB1BW";
+const broadcastUrl = "https://chat.whatsapp.com/FCzlwt5iaf7CPoaJ2wGfYq?s=cl&p=i&mlu=4&ilr=4";
 
 const Cart = lazy(() => import("./cart"));
 const Checkout = lazy(() => import("./Checkout"));
@@ -266,7 +266,7 @@ function App() {
             <div className="hero-buttons">
 
               <a
-                href={tiktokUrl}
+                href={broadcastUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="hero-primary"
@@ -1074,7 +1074,7 @@ function App() {
 
           <a
             className="newsletter-form"
-            href={tiktokUrl}
+            href={broadcastUrl}
             target="_blank"
             rel="noreferrer"
           >
