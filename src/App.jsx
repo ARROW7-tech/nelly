@@ -1135,7 +1135,7 @@ function App() {
               </span>
 
               <strong>
-                +234 701 458 0884
+                CHAT ON WHATSAPP
               </strong>
 
               <small>
