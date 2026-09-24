@@ -11,6 +11,8 @@ import nellyImage from "./assets/nelly.jpg";
 import wigImage from "./assets/wig.jpg";
 import initialProducts from "./products";
 
+const tiktokUrl = "https://www.tiktok.com/@nl_beauty_empire?_r=1&_t=ZS-9A0FG6TB1BW";
+
 const Cart = lazy(() => import("./cart"));
 const Checkout = lazy(() => import("./Checkout"));
 const ProductDetails = lazy(() => import("./ProductDetails"));
@@ -264,7 +266,9 @@ function App() {
             <div className="hero-buttons">
 
               <a
-                href="#shop"
+                href={tiktokUrl}
+                target="_blank"
+                rel="noreferrer"
                 className="hero-primary"
               >
                 SHOP COLLECTION
@@ -1068,28 +1072,15 @@ function App() {
           </div>
 
 
-          <form
+          <a
             className="newsletter-form"
-            onSubmit={(event) => {
-              event.preventDefault();
-
-              alert(
-                "Thank you for joining Hair by Nelly!"
-              );
-            }}
+            href={tiktokUrl}
+            target="_blank"
+            rel="noreferrer"
           >
-
-            <input
-              type="email"
-              placeholder="Your email address"
-              required
-            />
-
-            <button type="submit">
-              JOIN →
-            </button>
-
-          </form>
+            <span>FOLLOW US ON TIKTOK</span>
+            <strong>JOIN →</strong>
+          </a>
 
         </section>
 

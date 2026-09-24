@@ -1099,7 +1099,10 @@ img {
 .newsletter-form {
   min-width: 430px;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   border-bottom: 1px solid var(--gold);
+  text-decoration: none;
 }
 
 .newsletter-form input {
@@ -1123,6 +1126,13 @@ img {
   cursor: pointer;
   font-size: 9px;
   font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.newsletter-form strong {
+  padding: 0 15px;
+  color: var(--gold-light);
+  font-size: 9px;
   letter-spacing: 1px;
 }
 
