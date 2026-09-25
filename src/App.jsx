@@ -1148,6 +1148,33 @@ function App() {
 
         </section>
 
+        <section className="savings-section">
+  <div className="savings-content">
+    <span className="savings-label">SAVE & SLAY</span>
+
+    <h2>Your Dream Hair,<br />One Payment at a Time.</h2>
+
+    <p>
+      You don't have to pay for your dream hair all at once.
+      With our flexible Hair Savings Plan, you can save any amount,
+      daily, until you've reached the price of the hair you desire.
+    </p>
+
+    <span className="savings-tagline">
+      Choose your hair. Save at your own pace. Slay when you're ready.
+    </span>
+
+    <a
+      href="https://chat.whatsapp.com/ClNzPYCVqsEHj38ghQYBAU?s=cl&p=i&mlu=4&ilr=4"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="savings-button"
+    >
+      JOIN THE HAIR SAVINGS GROUP →
+    </a>
+  </div>
+</section>
+
         {/* =========================================
             REVIEWS
         ========================================= */}
